@@ -130,21 +130,28 @@ public class LinkedTaskListImpl implements LinkedTaskList{
         int timea;
         Task taskcheking;
         try {
-            if (from >= 0 && from < to ) {
-                for (int x = 0; x < size; x++) {
-                    taskcheking = tempo.getValue();
-                    timea = taskcheking.nextTimeAfter(from);
-                    if ((timea < to) && (timea != -1)) {
-                        incomingList.add(taskcheking);
+            if (from < 1) {
+                throw new Exception("'From' can´t be less than 1");
+            } else if (to < 1) {
+                throw new Exception("'To' can´t be less than 1");
+            } else if (from > to) {
+                throw new Exception("'From' can´t be bigger than 'To'");
+            } else {
+                if (from >= 0 && from < to) {
+                    for (int x = 0; x < size; x++) {
+                        taskcheking = tempo.getValue();
+                        timea = taskcheking.nextTimeAfter(from);
+                        if ((timea < to) && (timea != -1)) {
+                            incomingList.add(taskcheking);
 
+                        }
+                        tempo = tempo.getNext();
                     }
-                    tempo = tempo.getNext();
+                    for (int y = 0; y < incomingList.size(); y++) {
+                        incomingList2.add(incomingList.getTask(incomingList.size() - y - 1));
+                    }
                 }
-                for (int y=0; y<incomingList.size(); y++){
-                    incomingList2.add(incomingList.getTask(incomingList.size()-y-1));
-                }
-            }else {
-                throw new Exception(" The interval of time is incorrect!");
+
             }
         }
         catch (Exception e){
