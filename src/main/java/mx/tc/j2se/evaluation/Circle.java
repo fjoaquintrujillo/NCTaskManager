@@ -5,28 +5,20 @@ public class Circle {
     public Circle(){
         radius = 1;
     };
-    public Circle(int radius) {
-        try {
+    public Circle(int radius) throws Exception {
             if (radius > 0) {
                 this.radius = radius;
             } else {
                 throw new Exception("The radius have to be bigger than zero!");
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
-    protected void setRadius(int radius){
-        try {
+    protected void setRadius(int radius) throws Exception{
             if (radius > 0) {
                 this.radius = radius;
             } else {
                 throw new Exception("The radius have to be bigger than zero!");
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     protected int getRadius(){
